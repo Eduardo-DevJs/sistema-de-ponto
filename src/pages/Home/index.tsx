@@ -131,7 +131,7 @@ export default function Home() {
                 key={index}
               >
                 <div className="flex items-center gap-2">
-                  <FaClock size={15}/>
+                  <FaClock size={15} />
                   {hour.time}
                 </div>
                 <div>{new Date().toLocaleDateString()}</div>
