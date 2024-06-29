@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaClock } from "react-icons/fa";
 
 interface TimeProps {
   time: string;
@@ -129,8 +130,11 @@ export default function Home() {
                 className="flex items-center justify-between font-semibold text-xl"
                 key={index}
               >
-                {hour.time}
-                <div>28/06/2024</div>
+                <div className="flex items-center gap-2">
+                  <FaClock size={15}/>
+                  {hour.time}
+                </div>
+                <div>{new Date().toLocaleDateString()}</div>
               </li>
             ))}
           </ul>
