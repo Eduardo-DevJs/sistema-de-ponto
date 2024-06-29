@@ -55,21 +55,7 @@ export default function Home() {
     function getDateCurrent() {
       const now = new Date();
       const day = String(now.getDay()).padStart(2, "0");
-      const monthNames = [
-        "Janeiro",
-        "Fevereiro",
-        "Março",
-        "Abril",
-        "Maio",
-        "Junho",
-        "Julho",
-        "Agosto",
-        "Setembro",
-        "Outubro",
-        "Novembro",
-        "Dezembro",
-      ];
-      const month = monthNames[now.getMonth()];
+      const month = now.toLocaleString("pt-BR", { month: "long" });
       const year = now.getFullYear();
 
       setDate(`${day} de ${month} de ${year}`);
