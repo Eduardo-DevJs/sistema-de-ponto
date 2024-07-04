@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { FaClock } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
+import { FaArrowAltCircleUp, FaArrowCircleDown, FaClock } from "react-icons/fa";
 
 interface TimeProps {
   time: string;
@@ -15,22 +16,35 @@ export default function Home() {
 
   const [date, setDate] = useState("");
   const [hours, setHours] = useState<TimeProps[]>([]);
+  const [showList, setShowList] = useState(false);
 
-  const addPoint = () => {
+  function addPoint() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, "0");
     const minutes = String(now.getMinutes()).padStart(2, "0");
     const newPoint = `${hours}:${minutes} h`;
 
     setHours((prevPoints) => [...prevPoints, { time: newPoint }]);
-  };
 
-  const getLastPoint = (): string => {
+    toast.success("Registro feito com sucesso!", {
+      style: {
+        background: "#333",
+        color: "#00D26A",
+        fontWeight: "bold"
+      },
+    });
+  }
+
+  function getLastPoint(): string {
     if (hours.length > 0) {
       return hours[hours.length - 1].time;
     }
     return "";
-  };
+  }
+
+  function handleModeList() {
+    setShowList((prevState) => !prevState);
+  }
 
   useEffect(() => {
     function updateClock() {
@@ -106,26 +120,43 @@ export default function Home() {
             </div>
           </div>
 
-          <h2 className="uppercase text-sky-600 font-semibold mt-5 text-center">
-            ùltimos Registro
-          </h2>
+          {showList ? (
+            <div
+              onClick={handleModeList}
+              className="uppercase select-none flex items-center justify-center gap-3 text-sky-600 font-semibold cursor-pointer mt-5 text-center"
+            >
+              ùltimos Registros
+              <FaArrowAltCircleUp size={20} />
+            </div>
+          ) : (
+            <div
+              onClick={handleModeList}
+              className="uppercase select-none flex items-center justify-center gap-3 text-sky-600 font-semibold cursor-pointer mt-5 text-center"
+            >
+              ùltimos Registros
+              <FaArrowCircleDown size={20} />
+            </div>
+          )}
 
-          <ul className="mt-3 space-y-2">
-            {hours.map((hour, index) => (
-              <li
-                className="flex items-center justify-between font-semibold text-xl"
-                key={index}
-              >
-                <div className="flex items-center gap-2">
-                  <FaClock size={15} />
-                  {hour.time}
-                </div>
-                <div>{new Date().toLocaleDateString()}</div>
-              </li>
-            ))}
-          </ul>
+          {showList && (
+            <ul className="mt-3 space-y-2">
+              {hours.map((hour, index) => (
+                <li
+                  className="flex items-center justify-between font-semibold text-xl"
+                  key={index}
+                >
+                  <div className="flex items-center gap-2">
+                    <FaClock size={15} />
+                    {hour.time}
+                  </div>
+                  <div>{new Date().toLocaleDateString()}</div>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
+      <Toaster position="bottom-center" />
     </div>
   );
 }
