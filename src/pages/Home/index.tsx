@@ -82,13 +82,13 @@ export default function Home() {
         </header>
         <div className="mt-5">
           <div>
-            <h1 className="text-2xl mb-1">Batida</h1>
+            <h1 className="text-2xl mb-1">Registro</h1>
             <div className="h-px bg-slate-200"></div>
           </div>
 
           <div className=" flex items-center justify-between mt-5">
             <div className="flex flex-col justify-center items-center h-36 w-36 rounded-full border-4 border-slate-700">
-              <span>Ultima batida</span>
+              <span>Último Registro</span>
               <h2 className="font-bold text-xl">{getLastPoint()}</h2>
               <span className="uppercase">De junho</span>
             </div>
@@ -107,7 +107,7 @@ export default function Home() {
           </div>
 
           <h2 className="uppercase text-sky-600 font-semibold mt-5 text-center">
-            Últimas batidas
+            ùltimos Registro
           </h2>
 
           <ul className="mt-3 space-y-2">
