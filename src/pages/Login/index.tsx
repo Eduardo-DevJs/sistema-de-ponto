@@ -53,7 +53,10 @@ export default function PageLogin() {
         </div>
         <Button>Entrar</Button>
         <Link className="text-center mt-3" to={"/register"}>
-          Não tem conta? <span className="underline">Cadastra-se</span>
+          Não tem conta?{" "}
+          <span className="underline  font-medium text-sky-500">
+            Cadastra-se
+          </span>
         </Link>
       </form>
     </div>
