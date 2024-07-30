@@ -97,7 +97,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    function getDateCurrent() {
+    function getDateCurrent() { 
       const now = new Date();
       const day = String(now.getDate()).padStart(2, "0");
       const month = now.toLocaleString("pt-BR", { month: "long" });

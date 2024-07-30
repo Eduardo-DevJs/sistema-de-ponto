@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import { auth } from "../../services/FirebaseConnection";
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function PageLogin() {
   const [email, setEmail] = useState("");
@@ -19,8 +20,22 @@ export default function PageLogin() {
       })
       .catch((err) => {
         console.log(`Erro ao logar ${err}`);
+        toast.error("Usuário não encontrado!", {
+          style: {
+            background: "#333",
+            color: "#e54",
+            fontWeight: "bold",
+          },
+        });
       });
+
+    clearFields();
   };
+
+  function clearFields() {
+    setEmail("");
+    setPassword("");
+  }
 
   return (
     <div className="h-screen flex items-center justify-center">
@@ -36,6 +51,7 @@ export default function PageLogin() {
             Usuário
             <Input
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
               id="user"
               type="text"
             />
@@ -46,6 +62,7 @@ export default function PageLogin() {
             Senha
             <Input
               onChange={(e) => setPassword(e.target.value)}
+              value={password}
               id="password"
               type="password"
             />
@@ -59,6 +76,7 @@ export default function PageLogin() {
           </span>
         </Link>
       </form>
+      <Toaster position="bottom-center" />
     </div>
   );
 }

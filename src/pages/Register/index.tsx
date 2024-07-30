@@ -5,6 +5,7 @@ import { FormEvent, useContext, useState } from "react";
 import { auth } from "../../services/FirebaseConnection";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function PageRegister() {
   const [name, setName] = useState("");
@@ -29,7 +30,6 @@ export default function PageRegister() {
         });
 
         navigate("/home", { replace: true });
-        console.log("Cadastrado com sucesso!");
       })
       .catch((err) => {
         console.log(`Erro ao cadastrar: ${err}`);
@@ -85,6 +85,7 @@ export default function PageRegister() {
           <span className="underline text-sky-500 font-medium">Faça login</span>
         </Link>
       </form>
+      <Toaster position="bottom-center" />
     </div>
   );
 }
